@@ -15,17 +15,17 @@
 class Bugpilot < Formula
   desc     "CLI-first developer tool for debugging production incidents"
   homepage "https://bugpilot.io"
-  version  "0.1.0"
+  version  "0.3.0"
   license  "Proprietary"
 
   # Pre-built binaries (no Python required on the user's machine).
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-      sha256 "REPLACE_WITH_ARM64_SHA256"
+      sha256 "b3296ad3fdf9ff1965ceacf56238d8f1ec5baa7a6e45bc9acd05f69cbe3559c7"
     else
       url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-x86_64"
-      sha256 "REPLACE_WITH_X86_64_SHA256"
+      sha256 "b3296ad3fdf9ff1965ceacf56238d8f1ec5baa7a6e45bc9acd05f69cbe3559c7"
     end
   end
 
