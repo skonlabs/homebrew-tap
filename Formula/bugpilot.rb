@@ -1,35 +1,27 @@
 # Homebrew formula for the BugPilot CLI.
-#
-# This file lives in a Homebrew tap repo (e.g. skonlabs/homebrew-tap).
-# Users install with:
-#   brew tap skonlabs/tap
-#   brew install bugpilot
-#
-# To update after a release:
-#   1. Download the new macOS arm64 binary from the GitHub Release.
-#   2. Compute sha256: shasum -a 256 bugpilot-macos-arm64
-#   3. Update the sha256 field below.
-#   4. Bump `version`.
-#   5. Commit and push to the tap repo.
-
 class Bugpilot < Formula
   desc     "CLI-first developer tool for debugging production incidents"
   homepage "https://bugpilot.io"
   version  "0.3.0"
   license  "Proprietary"
 
-  # Only macOS is supported via Homebrew (Linux/Windows users: pip3 install bugpilot)
   on_macos do
-    url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-    sha256 "a387a0a7804910fa8470a9fe8ba5c5c648498813f3ae8f272fa9a7c5a74dff22"
+    on_arm do
+      url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
+      sha256 "488222bff935b6099633a384ff20ac524662658df6b1ea2f0b771d94de0d6748"
+    end
+    on_intel do
+      url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-x86_64"
+      sha256 "61bcb6f3666273c727336424a49aaad829cdc3b1db65f4f8e1bb9b1cbc67ef9d"
+    end
   end
 
   def install
     if Hardware::CPU.intel?
-      odie "#{name} does not yet provide an Intel Mac binary.\n" \
-           "Install via pip instead:  pip3 install bugpilot"
+      bin.install "bugpilot-macos-x86_64" => "bugpilot"
+    else
+      bin.install "bugpilot-macos-arm64" => "bugpilot"
     end
-    bin.install "bugpilot-macos-arm64" => "bugpilot"
   end
 
   def caveats
@@ -38,10 +30,10 @@ class Bugpilot < Formula
       To enable them, add one of the following to your shell profile:
 
         # bash (~/.bash_profile or ~/.bashrc)
-        eval "$(bugpilot --completion bash)"
+        eval "\"
 
         # zsh (~/.zshrc)
-        eval "$(bugpilot --completion zsh)"
+        eval "\"
 
         # fish (~/.config/fish/config.fish)
         bugpilot --completion fish | source
