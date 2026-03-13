@@ -6,9 +6,9 @@
 #   brew install bugpilot
 #
 # To update after a release:
-#   1. Download the new macOS binaries from the GitHub Release.
-#   2. Compute sha256: shasum -a 256 bugpilot-macos-*
-#   3. Update the `url` and `sha256` fields below for each bottle block.
+#   1. Download the new macOS arm64 binary from the GitHub Release.
+#   2. Compute sha256: shasum -a 256 bugpilot-macos-arm64
+#   3. Update the sha256 field below.
 #   4. Bump `version`.
 #   5. Commit and push to the tap repo.
 
@@ -18,18 +18,17 @@ class Bugpilot < Formula
   version  "0.3.0"
   license  "Proprietary"
 
-  # Pre-built binary (Apple Silicon only — no Python required on the user's machine).
-  # Note: only arm64 is provided; Intel Mac users should use pip install bugpilot.
   on_arm do
-    url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-    sha256 "4a3073a4b60d4ddc87a6db13fa2fac9b2bc1cbef887b863365c7b03718dff2ac"
+    on_macos do
+      url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
+      sha256 "a387a0a7804910fa8470a9fe8ba5c5c648498813f3ae8f272fa9a7c5a74dff22"
+    end
   end
 
   def install
     bin.install "bugpilot-macos-arm64" => "bugpilot"
   end
 
-  # Shell completion (generated from the CLI at install time).
   def caveats
     <<~EOS
       Shell completions are not installed automatically.
