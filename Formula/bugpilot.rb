@@ -8,11 +8,11 @@ class Bugpilot < Formula
   on_macos do
     on_arm do
       url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-      sha256 "e53e09b307720844e2a1fb7a7857d2c315bdd1152d5adb70b546f56c168fd60e"
+      sha256 "78aa9f587f36f2c15bfa49043ca19764aa59c39a073dcf3cb752c15c38d9fccc"
     end
     on_intel do
       url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-x86_64"
-      sha256 "6586f9a155b3197693c5cb3d8d5064b0212dc5bde3b8602833432ef1dbd463dc"
+      sha256 "3d1c4607f6ab1afa23541fdd92dd9dedf4a36a82e5550d72d78247a601bee91a"
     end
   end
 
