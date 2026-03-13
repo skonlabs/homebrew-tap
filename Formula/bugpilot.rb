@@ -18,14 +18,17 @@ class Bugpilot < Formula
   version  "0.3.0"
   license  "Proprietary"
 
-  on_arm do
-    on_macos do
-      url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-      sha256 "a387a0a7804910fa8470a9fe8ba5c5c648498813f3ae8f272fa9a7c5a74dff22"
-    end
+  # Only macOS is supported via Homebrew (Linux/Windows users: pip3 install bugpilot)
+  on_macos do
+    url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
+    sha256 "a387a0a7804910fa8470a9fe8ba5c5c648498813f3ae8f272fa9a7c5a74dff22"
   end
 
   def install
+    if Hardware::CPU.intel?
+      odie "#{name} does not yet provide an Intel Mac binary.\n" \
+           "Install via pip instead:  pip3 install bugpilot"
+    end
     bin.install "bugpilot-macos-arm64" => "bugpilot"
   end
 
