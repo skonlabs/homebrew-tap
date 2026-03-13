@@ -22,7 +22,7 @@ class Bugpilot < Formula
   # Note: only arm64 is provided; Intel Mac users should use pip install bugpilot.
   on_arm do
     url "https://github.com/skonlabs/bugpilot/releases/download/v#{version}/bugpilot-macos-arm64"
-    sha256 "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5"
+    sha256 "4a3073a4b60d4ddc87a6db13fa2fac9b2bc1cbef887b863365c7b03718dff2ac"
   end
 
   def install
